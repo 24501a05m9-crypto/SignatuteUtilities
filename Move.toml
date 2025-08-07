@@ -1,0 +1,15 @@
+[package]
+name = "SignatureUtilities"
+version = "1.0.0"
+authors = []
+
+[addresses]
+hemanth_addr="c7d05cee6c62e20bb8038d1f79d9d2f0d7efc6e965814bb513f216c0addf7ed7"
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-framework.git"
+rev = "mainnet"
+subdir = "aptos-framework"
+
+[dev-dependencies]
