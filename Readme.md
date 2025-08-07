@@ -83,7 +83,7 @@ struct SignatureData has key, store {
 ## Usage Example
 
 ```move
-// Store signature data
+
 signature_utilities::signature_utils::store_signature_data(
     &account,
     b"Hello World",
@@ -91,7 +91,7 @@ signature_utilities::signature_utils::store_signature_data(
     public_key_bytes
 );
 
-// Verify signature
+
 let is_valid = signature_utilities::signature_utils::verify_signature_data(account_address);
 ```
 
@@ -117,4 +117,5 @@ This smart contract is provided as-is for educational and development purposes.
 ## Contract details
 0x8006502131cc1ce69254add4473caba9a2fedf71a084ed918eacdc66adfae0f9
 ![alt text](<Screenshot 2025-08-07 145938.png>)
+
 
