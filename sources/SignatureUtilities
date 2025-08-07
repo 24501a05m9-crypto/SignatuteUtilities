@@ -5,11 +5,11 @@ module hemanth_addr::signature_utils {
     use aptos_std::ed25519;
     use aptos_std::multi_ed25519;
 
-    /// Error codes
+    
     const E_INVALID_SIGNATURE: u64 = 1;
     const E_INVALID_PUBLIC_KEY: u64 = 2;
 
-    /// Struct to store signature data
+    
     struct SignatureData has key, store {
         message: vector<u8>,
         signature: vector<u8>,
@@ -17,7 +17,7 @@ module hemanth_addr::signature_utils {
         is_verified: bool,
     }
 
-    /// Function 1: Store signature data for verification
+    
     public fun store_signature_data(
         account: &signer,
         message: vector<u8>,
@@ -26,7 +26,7 @@ module hemanth_addr::signature_utils {
     ) {
         let account_addr = signer::address_of(account);
         
-        // Verify the signature before storing
+       
         let is_valid = verify_ed25519_signature(
             &message,
             &public_key,
@@ -40,7 +40,7 @@ module hemanth_addr::signature_utils {
             is_verified: is_valid,
         };
 
-        // Store or update signature data
+       
         if (exists<SignatureData>(account_addr)) {
             let stored_data = borrow_global_mut<SignatureData>(account_addr);
             *stored_data = sig_data;
@@ -49,13 +49,13 @@ module hemanth_addr::signature_utils {
         }
     }
 
-    /// Function 2: Verify signature and return validation status
+    
     public fun verify_signature_data(account_addr: address): bool acquires SignatureData {
         assert!(exists<SignatureData>(account_addr), E_INVALID_SIGNATURE);
         
         let sig_data = borrow_global<SignatureData>(account_addr);
         
-        // Re-verify the signature
+        
         verify_ed25519_signature(
             &sig_data.message,
             &sig_data.public_key,
@@ -63,7 +63,7 @@ module hemanth_addr::signature_utils {
         )
     }
 
-    /// Helper function for ED25519 signature verification
+   
     fun verify_ed25519_signature(
         message: &vector<u8>,
         public_key: &vector<u8>,
@@ -73,4 +73,5 @@ module hemanth_addr::signature_utils {
         let sig = ed25519::new_signature_from_bytes(*signature);
         ed25519::signature_verify_strict(&sig, &pk, *message)
     }
+
 }
